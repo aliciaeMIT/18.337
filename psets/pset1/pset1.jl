@@ -1,7 +1,3 @@
-module Pset1
-
-export NN, NN_derivative
-
 using LinearAlgebra
 
 # This function for the "3-layer" multilayer perceptron contains an input layer which takes in 2 values, 2 hidden layers with size 16 each, and 1 output layer returning a singular float64 value. 
@@ -27,7 +23,7 @@ end
 vals = rand(Float64,2)
 result = NN(vals[1],vals[2])
 typeof(NN(vals[1],vals[2])) == Float64
-	
+
 
 function NN_derivative(x, y, dx, dy)
 	X = [x, y]
@@ -56,13 +52,13 @@ function NN_derivative(x, y, dx, dy)
 	dZ_dX = reshape(dA3_dA2,1,1) * reshape(dA2_dA1,1,16) * dA1_dX
 	dZ = dZ_dX * dX 
 
-	return [Z, dZ]	
+	return [Z[1], dZ[1]]	
 end
 
 xy = rand(Float64,2)
 dxy = [0.0001, 0.0001]
 	
-NN_derivative(xy[1], xy[2], dxy[1], dxy[2])
+print(NN_derivative(xy[1], xy[2], dxy[1], dxy[2]))
 
 
-end
+
